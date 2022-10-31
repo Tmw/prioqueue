@@ -44,6 +44,43 @@ test("duplicate priorities", () => {
   expect(output).toEqual(expected);
 });
 
+test("enqueueing item", () => {
+  const q = new PrioQueue({
+    compareFn: (a, b) => a - b,
+    initialValues: [6, 12, 3, 7],
+  });
+
+  q.enqueue(2);
+  q.enqueue(4);
+  q.enqueue(18);
+
+  const it = CreateIterator(q);
+  let output = Array.from(it);
+
+  expect(output).toEqual([2, 3, 4, 6, 7, 12, 18]);
+});
+
+test("dequeueing items", () => {
+  const q = new PrioQueue({
+    compareFn: (a, b) => a - b,
+    initialValues: [6, 12, 3, 7],
+  });
+
+  expect(q.dequeue()).toEqual(3);
+  expect(q.dequeue()).toEqual(6);
+  expect(q.dequeue()).toEqual(7);
+  expect(q.dequeue()).toEqual(12);
+});
+
+test("dequeueing on empty queue returns null", () => {
+  const q = new PrioQueue<number>({
+    compareFn: (a: number, b: number) => a - b,
+    initialValues: [],
+  });
+
+  expect(q.dequeue()).toBeNull;
+});
+
 type TestSet = {
   input: number[];
   expected: number[];
