@@ -3,7 +3,10 @@ import { PrioQueue, CreateIterator } from "./prioqueue";
 
 test("initial values", () => {
   const { input, expected } = makeSequence();
-  const q = new PrioQueue(input, (a, b) => a - b);
+  const q = new PrioQueue({
+    compareFn: (a, b) => a - b,
+    initialValues: input,
+  });
 
   let output = [];
   for (let i = 0; i < input.length; i++) {
@@ -17,7 +20,10 @@ test("initial values", () => {
 
 test("PrioQueueIterator", () => {
   const { input, expected } = makeSequence();
-  const q = new PrioQueue(input, (a, b) => a - b);
+  const q = new PrioQueue({
+    compareFn: (a, b) => a - b,
+    initialValues: input,
+  });
 
   const it = CreateIterator(q);
   let output = Array.from(it);
@@ -27,7 +33,10 @@ test("PrioQueueIterator", () => {
 
 test("duplicate priorities", () => {
   const { input, expected } = makeSequence();
-  const q = new PrioQueue(input, (a, b) => a - b);
+  const q = new PrioQueue({
+    compareFn: (a, b) => a - b,
+    initialValues: input,
+  });
 
   const it = CreateIterator(q);
   let output = Array.from(it);
@@ -39,6 +48,7 @@ type TestSet = {
   input: number[];
   expected: number[];
 };
+
 // Return a random sequence of given length containing random numbers
 const makeSequence = (length: number = Math.random() * 10): TestSet => {
   const set = Array.from({ length }, () => Math.floor(Math.random() * 100));

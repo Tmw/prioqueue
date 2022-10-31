@@ -1,13 +1,18 @@
 export type Optional<T> = T | null;
 export type CompareFn<T> = (a: T, b: T) => Number;
 
+interface PrioQueueParams<T> {
+  initialValues: Array<T>;
+  compareFn: CompareFn<T>;
+}
+
 export class PrioQueue<T> {
   private values: Array<T> = [];
   private compareFn: CompareFn<T>;
 
-  constructor(values: Array<T>, compareFn: CompareFn<T>) {
+  constructor({ compareFn, initialValues }: PrioQueueParams<T>) {
     this.compareFn = compareFn;
-    values.forEach((val) => this.enqueue(val));
+    initialValues.forEach((value) => this.enqueue(value));
   }
 
   enqueue(value: T) {
@@ -43,7 +48,7 @@ export class PrioQueue<T> {
     }
   }
 
-  getSwapCandidate(parent: number): number {
+  private getSwapCandidate(parent: number): number {
     const leftChild = parent * 2 + 1;
     const rightChild = parent * 2 + 2;
     let candidate = parent;
