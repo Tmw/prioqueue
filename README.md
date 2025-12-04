@@ -1,6 +1,6 @@
-## PrioQueue
+## Prioqueuejs
 
-Priority Queue implementation using Typescript and tested with Jest. Mostly as an exercise ;)
+Priority Queue implementation in typescript.
 
 ## Getting started
 
