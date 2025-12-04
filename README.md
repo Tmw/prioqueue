@@ -5,8 +5,7 @@ Priority Queue implementation using Typescript and tested with Jest. Mostly as a
 ## Getting started
 
 ```console
-npm install
-npm test
+npm install prioqueuejs
 ```
 
 ## Usage
