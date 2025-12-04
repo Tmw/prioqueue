@@ -1,14 +1,19 @@
 {
-  "name": "@tmw/prioqueue",
-  "version": "1.0.0",
+  "name": "prioqueuejs",
+  "version": "1.0.3",
   "description": "",
-  "main": "index.js",
+  "main": "dist/prioqueue.js",
   "scripts": {
     "build": "tsc",
     "test": "npx jest",
     "prestart": "npm run build",
-    "start": "node dist/index.js"
+    "start": "node dist/index.js",
+    "prepublishOnly": "npm run build"
   },
+  "files": [
+    "dist/prioqueue.ts",
+    "dist/prioqueue.d.ts"
+  ],
   "author": "",
   "license": "MIT",
   "devDependencies": {
@@ -17,7 +22,10 @@
     "ts-node": "^10.9.1",
     "typescript": "^4.8.4"
   },
-  "publishConfig": {
-    "registry": "https://npm.pkg.github.com"
+  "exports": {
+    ".": {
+      "import": "./dist/prioqueue.js",
+      "types": "./dist/prioqueue.d.ts"
+    }
   }
 }
