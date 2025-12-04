@@ -54,14 +54,14 @@ export class PrioQueue<T> {
     let candidate = parent;
 
     if (
-      leftChild <= this.values.length &&
+      leftChild < this.values.length &&
       this.compareFn(this.values[candidate], this.values[leftChild]) > 0
     ) {
       candidate = leftChild;
     }
 
     if (
-      rightChild <= this.values.length &&
+      rightChild < this.values.length &&
       this.compareFn(this.values[candidate], this.values[rightChild]) > 0
     ) {
       candidate = rightChild;

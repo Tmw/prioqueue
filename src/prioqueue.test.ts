@@ -81,6 +81,26 @@ test("dequeueing on empty queue returns null", () => {
   expect(q.dequeue()).toBeNull;
 });
 
+test("with objects", () => {
+  type Node = {
+    prio: number;
+    val: string;
+  };
+
+  const q = new PrioQueue<Node>({
+    initialValues: [
+      { prio: 1, val: "red" },
+      { prio: 4, val: "orange" },
+      { prio: 8, val: "green" },
+    ],
+    compareFn: (a, b) => a.prio - b.prio,
+  });
+
+  expect(q.dequeue()).toMatchObject({ prio: 1, val: "red" });
+  expect(q.dequeue()).toMatchObject({ prio: 4, val: "orange" });
+  expect(q.dequeue()).toMatchObject({ prio: 8, val: "green" });
+});
+
 type TestSet = {
   input: number[];
   expected: number[];
