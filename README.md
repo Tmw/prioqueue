@@ -11,7 +11,7 @@ npm install prioqueuejs
 ## Usage
 
 ```typescript
-import { PrioQueue, CreateIterator } from "./src/prioqueue";
+import { PrioQueue, CreateIterator } from "prioqueue";
 
 // initializing with new values
 const initialValues = [3, 4, 5];
