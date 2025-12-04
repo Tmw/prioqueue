@@ -30,5 +30,11 @@ jobs:
       - name: Build
         run: npm run build
 
+      - name: Set version from Git tag
+        run: |
+          VERSION=${GITHUB_REF#refs/tags/v}
+          echo "Setting version to $VERSION"
+          npm version $VERSION --no-git-tag-version
+
       - name: Publish
         run: npm publish
